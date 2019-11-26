@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3 generesMain">
+            <div class="generesHeading">
+                Generes book
+            </div>
+            <div class="generesList">
+                <div class="genereName" ng-repeat="generesData in generesData"
+                    ng-click="getGeneresBook(generesData._id)">
+                    {{generesData.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 mainBook">
+            <div class="col-md-3" ng-repeat="bookData in selectGeneresBook" ng-click="selectBook(bookData._id)"
+                data-toggle="modal" data-target="#myModal">
+                <div class="mainBookBlock">
+                    <div>
+                        <img class="bookImage" src="./../../assets/images/book.jpeg">
+                    </div>
+                    <div class="bookName">
+                        {{bookData.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="emptyData" ng-if="!(selectGeneresBook.length > 0)">
+                Please select generes.
+            </div>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Book</h4>
+                        </div>
+
+                        <div class="modal-body" style="height: 450px;">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <img src="./../../assets/images/book.jpeg" style="width: 108px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div><b>Name :</b> {{selectedGeneresBook.name}}</div>
+                                    <div><b>Description:</b>
+                                        {{selectedGeneresBook.description}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 reviewBlock">
+                                <div class="col-md-12" style="background-color: #f1f1f1;">
+                                    <div ng-repeat="x in reviewData" class="commentSection">
+                                        <img class="avtarImg" src="./../../assets/images/avtar.png">
+                                        {{x.description}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 formAlignCenter">
+                                <form name="reviewForm" ng-submit="reviewSubmit(reviewForm)" class="form-inline"
+                                    style="width: 100%;">
+                                    <input type="text" placeholder="Write your review" ng-model="review"
+                                        class="form-control" style="width: 69%;">
+                                    <input type="number" placeholder="Rating" min="0" max="5" ng-model="rating"
+                                        class="form-control" style="width: 16%;">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
